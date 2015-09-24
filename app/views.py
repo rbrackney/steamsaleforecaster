@@ -11,7 +11,7 @@ import pymysql as mdb
 import a_Model
 import numpy as np
 
-pw_path =  '/home/ryan/credentials/'
+pw_path =  '/home/ryan/credentials/' #change soon
 with open(os.path.join(pw_path, 'mysql_pw.txt')) as f:
     pw = f.read().strip('\n')
         
