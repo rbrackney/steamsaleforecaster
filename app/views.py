@@ -19,7 +19,8 @@ db = mdb.connect(user="root", host="localhost", passwd=pw, db="gamepricepred", c
 @app.route('/')
 @app.route('/index')
 def ss_input():
-  return render_template("ssinput.html") #currently the index  
+    option_list=['a','b','c','d','e','f','g']
+    return render_template("ssinput.html",option_list = option_list) #currently the index  
 
 @app.route('/ssoutput')
 def ss_output():
