@@ -11,17 +11,15 @@ import pymysql as mdb
 import a_Model
 import numpy as np
 
-pw_path =  '/home/ryan/credentials/' #change soon
-with open(os.path.join(pw_path, 'mysql_pw.txt')) as f:
+with open('db.pw') as f: #ignored in git
     pw = f.read().strip('\n')
-        
+
 #db = mdb.connect(user="root", host="localhost", passwd=pw, db="world", charset='utf8')
 db = mdb.connect(user="root", host="localhost", passwd=pw, db="gamepricepred", charset='utf8')
 @app.route('/')
 @app.route('/index')
 def ss_input():
-  return render_template("ssinput.html")
-  
+  return render_template("ssinput.html") #currently the index  
 
 @app.route('/ssoutput')
 def ss_output():
