@@ -117,10 +117,6 @@
       </div>
     </nav>
 
-
-
-
-
   <div class="container">
 
     <div class = "container">
@@ -133,7 +129,7 @@
     <form  action="/ssoutput" method="GET">
 	<select name="option">
 	{% for o in option_list %}
-	    <option value="{{ o }}" SELECTED>{{ o }}</option>
+	    <option value="{{ o.appid }}" SELECTED>{{ o.name }}</option>
 	{% endfor %}
 	</select>
 	</td>
