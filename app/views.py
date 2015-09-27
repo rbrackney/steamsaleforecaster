@@ -44,7 +44,7 @@ def ss_output():
 #        query_results = cur.fetchall()
         
     #game_info = str(query_results[0]) #just return the first option
-
+    
     appid= game_id
     
     db2 = mdb.connect(user="root", host="localhost", passwd=pw, db="ssf_db", charset='utf8')
@@ -64,11 +64,11 @@ def ss_output():
     else:
         buy_time = 'wait for a sale.'
     
-    return render_template("ssoutput.html", game_info = game_info, 
+    return render_template("ssoutput.html", 
                            appid = appid,option_list = OPTION_LIST,
                            name = gname, discount = adiscount, 
                            savings = asavings, percent = percent,
-                           buy_time = buy_time)
+                           buy_time = buy_time) #add back in "game info" later
 
 
 @app.route("/<appid>/priceplot.png")
