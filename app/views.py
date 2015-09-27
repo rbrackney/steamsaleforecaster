@@ -37,11 +37,11 @@ def ss_input():
 def ss_output():
     #game_id =  request.args.get('ID')
     game_id =  int(request.args.get('option'))
-    with db:
-        cur = db.cursor()
-        #add try/except statements
-        cur.execute("SELECT SteamDBTimestamp FROM Games WHERE Appid = %d;" % int(game_id))
-        query_results = cur.fetchall()
+#    with db: #removed getting graph info for now
+#        cur = db.cursor()
+#        #add try/except statements
+#        cur.execute("SELECT SteamDBTimestamp FROM Games WHERE Appid = %d;" % int(game_id))
+#        query_results = cur.fetchall()
         
     game_info = str(query_results[0]) #just return the first option
 
