@@ -43,7 +43,7 @@ def ss_output():
 #        cur.execute("SELECT SteamDBTimestamp FROM Games WHERE Appid = %d;" % int(game_id))
 #        query_results = cur.fetchall()
         
-    game_info = str(query_results[0]) #just return the first option
+    #game_info = str(query_results[0]) #just return the first option
 
     appid= game_id
     
