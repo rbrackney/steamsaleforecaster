@@ -9,6 +9,7 @@ from app import app
 import os
 import pymysql as mdb
 import a_Model
+import support
 import numpy as np
 
 with open('db.pw') as f: #ignored in git
@@ -35,18 +36,9 @@ def ss_input():
 
 @app.route('/ssoutput')
 def ss_output():
-    #game_id =  request.args.get('ID')
     game_id =  int(request.args.get('option'))
-#    with db: #removed getting graph info for now
-#        cur = db.cursor()
-#        #add try/except statements
-#        cur.execute("SELECT SteamDBTimestamp FROM Games WHERE Appid = %d;" % int(game_id))
-#        query_results = cur.fetchall()
-        
-    #game_info = str(query_results[0]) #just return the first option
-    
-    appid= game_id
-    
+   
+    appid= game_id    
     db2 = mdb.connect(user="root", host="localhost", passwd=pw, db="ssf_db", charset='utf8')
     with db2:
         cur = db2.cursor(mdb.cursors.DictCursor)
@@ -55,20 +47,44 @@ def ss_output():
     ginfo = cur.fetchone()
     gname = ginfo['game_name']
     adiscount = "%0.1f%%" % (ginfo['avg_discount'])
-    asavings = "$%0.2f" % (ginfo['avg_savings']) 
-    percent = "%0.1f%%" % (ginfo['sale_prob_y']*100)
+    asavings = "$%0.2f" % (ginfo['avg_savings'])
+    sale_prob = ginfo['sale_prob_y']*100
+    if sale_prob == 0:
+        sale_prob = 1
+    elif sale_prob == 100:
+        sale_prob = 90
+    
+    cur_price_str,cur_price,on_sale_currently = support.get_current_price(appid)
+            
+    
+    percent = "%0.1f%%" % (sale_prob)
     
     ## stand in for real code:
     if ginfo['sale_prob_y'] < 0.5:
-        buy_time = 'buy it now, since it is not likely to go on sale soon.'
+        buy_time = 'buy %s now, since it is not likely to go on sale soon.' % (gname)
     else:
         buy_time = 'wait for a sale.'
+        
+    bottom_games = support.recommend_games(appid,float(cur_price.strip('$')))
     
-    return render_template("ssoutput.html", 
+    '''not really dry, but works for now'''    
+    left_g = bottom_games[0] #left,center,right are the appids fed into the html template for the graphics call
+    center_g = bottom_games[1]
+    right_g = bottom_games[2]
+    
+    _cps, left_p, _osc = support.get_current_price(left_g)
+    _cps, center_p, _osc = support.get_current_price(center_g)
+    _cps, right_p, _osc = support.get_current_price(right_g)
+    
+    return render_template("ssoutput3.html", 
                            appid = appid,option_list = OPTION_LIST,
                            name = gname, discount = adiscount, 
                            savings = asavings, percent = percent,
-                           buy_time = buy_time) #add back in "game info" later
+                           buy_time = buy_time, cur_price_info = cur_price_str,
+                           left_id = left_g, cent_id = center_g, 
+                           right_id = right_g,
+                           left_price = left_p, right_price = left_p,
+                           center_price = center_p) #add back in "game info" later
 
 
 @app.route("/<appid>/priceplot.png")

@@ -117,7 +117,7 @@
       </div>
     </nav>
       <br>
-  	<br>
+    <br>
 
 
     <br><br>
@@ -129,16 +129,16 @@
     <div class="form-group">
 
     <form  action="/ssoutput" method="GET">
-	<select name="option">
-	{% for o in option_list %}
-	    <option value="{{ o.appid }}" SELECTED>{{ o.name }}</option>
-	{% endfor %}
-	</select>
-	</td>
-	<td>
-	    <input class="button1" type="submit" value="Forecast Sale">
-	</td>
-	</form>
+  <select name="option">
+  {% for o in option_list %}
+      <option value="{{ o.appid }}" SELECTED>{{ o.name }}</option>
+  {% endfor %}
+  </select>
+  </td>
+  <td>
+      <input class="button1" type="submit" value="Forecast Sale">
+  </td>
+  </form>
   </div> <!-- /.container-->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
