@@ -31,8 +31,21 @@ OPTION_LIST = sorted([{'name':x[0],'appid':x[1]} for x in OPTION_LIST],key=lambd
 @app.route('/index')
 def ss_input():
     #db2 = mdb.connect(user="root", host="localhost", passwd='hats', db="ssf_db", charset='utf8')
+    bottom_games, alternatives = support.recommend_games(10,60.00)
     
-    return render_template("ssinput.html",option_list = OPTION_LIST) #currently the index  
+    '''not really dry, but works for now'''    
+    left_g = bottom_games[0] #left,center,right are the appids fed into the html template for the graphics call
+    center_g = bottom_games[1]
+    right_g = bottom_games[2]
+    
+    _cps, left_p, _dc, _osc = support.get_rec_price(left_g,alternatives)
+    _cps, center_p, _dc, _osc = support.get_rec_price(center_g,alternatives)
+    _cps, right_p, _dc, _osc = support.get_rec_price(right_g,alternatives)
+    
+    return render_template("ssinput.html",left_id = left_g, cent_id = center_g, 
+                           right_id = right_g,left_price = left_p, right_price = left_p,
+                           center_price = center_p,
+                           option_list = OPTION_LIST) #currently the index  
 
 @app.route('/ssoutput')
 def ss_output():
@@ -49,7 +62,7 @@ def ss_output():
     adiscount = "%0.1f%%" % (ginfo['avg_discount'])
     asavings = "$%0.2f" % (ginfo['avg_savings'])
     sale_prob = ginfo['sale_prob_y']*100
-    if sale_prob == 0:
+    if sale_prob == 0:  
         sale_prob = 1
     elif sale_prob == 100:
         sale_prob = 90
@@ -60,7 +73,9 @@ def ss_output():
     percent = "%0.1f%%" % (sale_prob)
     
     ## stand in for real code:
-    recomendation_score = support.rec_val(ginfo['avg_savings'],sale_prob)
+    print sale_prob
+    recomendation_score = support.rec_val(ginfo['avg_savings'],sale_prob * 0.01)
+    print recomendation_score
     if recomendation_score < 0.5:
         buy_time = 'buy %s now, since it is not likely to go on sale soon.' % (gname)
     else:
@@ -85,7 +100,7 @@ def ss_output():
                            cur_price = cur_price,
                            left_id = left_g, cent_id = center_g, 
                            right_id = right_g,
-                           left_price = left_p, right_price = left_p,
+                           left_price = left_p, right_price = right_p,
                            center_price = center_p) #add back in "game info" later
 
 

@@ -42,14 +42,14 @@ def get_rec_price(app_id, alternatives):
     try:
         out_str,fp, disc, onsale = get_current_price(app_id)
     except:
-        new_id = np.choice(alternatives)
+        new_id = np.random.choice(alternatives)
         out_str,fp, disc, onsale = get_current_price(new_id)
     
     return out_str,fp, disc, onsale
     
 def rec_val(disc_amount,x):
     loc_base =0.5 #default center
-    disc_mod = 0.01 #how much to shift the discount amount by
+    disc_mod = 0.001 #how much to shift the discount amount by
     loc_mod = disc_amount * disc_mod 
     loc = loc_base - loc_mod #shift the center by loc_amount
     y_l = stats.logistic.cdf(x, loc=loc, scale=.1)
