@@ -54,33 +54,35 @@ def ss_output():
     elif sale_prob == 100:
         sale_prob = 90
     
-    cur_price_str,cur_price,on_sale_currently = support.get_current_price(appid)
+    cur_price_str,cur_price,cur_disc, on_sale_currently = support.get_current_price(appid)
             
     
     percent = "%0.1f%%" % (sale_prob)
     
     ## stand in for real code:
-    if ginfo['sale_prob_y'] < 0.5:
+    recomendation_score = support.rec_val(ginfo['avg_savings'],sale_prob)
+    if recomendation_score < 0.5:
         buy_time = 'buy %s now, since it is not likely to go on sale soon.' % (gname)
     else:
         buy_time = 'wait for a sale.'
         
-    bottom_games = support.recommend_games(appid,float(cur_price.strip('$')))
+    bottom_games, alternatives = support.recommend_games(appid,float(cur_price.strip('$')))
     
     '''not really dry, but works for now'''    
     left_g = bottom_games[0] #left,center,right are the appids fed into the html template for the graphics call
     center_g = bottom_games[1]
     right_g = bottom_games[2]
     
-    _cps, left_p, _osc = support.get_current_price(left_g)
-    _cps, center_p, _osc = support.get_current_price(center_g)
-    _cps, right_p, _osc = support.get_current_price(right_g)
+    _cps, left_p, _dc, _osc = support.get_rec_price(left_g,alternatives)
+    _cps, center_p, _dc, _osc = support.get_rec_price(center_g,alternatives)
+    _cps, right_p, _dc, _osc = support.get_rec_price(right_g,alternatives)
     
     return render_template("ssoutput3.html", 
                            appid = appid,option_list = OPTION_LIST,
                            name = gname, discount = adiscount, 
                            savings = asavings, percent = percent,
-                           buy_time = buy_time, cur_price_info = cur_price_str,
+                           buy_time = buy_time, cur_discount = cur_disc,
+                           cur_price = cur_price,
                            left_id = left_g, cent_id = center_g, 
                            right_id = right_g,
                            left_price = left_p, right_price = left_p,

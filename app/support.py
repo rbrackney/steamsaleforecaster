@@ -32,7 +32,20 @@ def get_current_price(appid_in):
         out_str = 'is currently on sale for %s at %s %% off' % (fp, disc)
     else:
         out_str = 'is currently %s' % fp
-    return out_str,fp, onsale
+    return out_str,fp, disc, onsale
+    
+def get_rec_price(app_id, alternatives):
+    '''
+    if an error is thrown, try again with an alternative title, once. If this 
+    doesn't solve the problem, readdress with recursion
+    '''
+    try:
+        out_str,fp, disc, onsale = get_current_price(app_id)
+    except:
+        new_id = np.choice(alternatives)
+        out_str,fp, disc, onsale = get_current_price(new_id)
+    
+    return out_str,fp, disc, onsale
     
 def rec_val(disc_amount,x):
     loc_base =0.5 #default center
@@ -60,6 +73,6 @@ def recommend_games(cur_appid, cur_price):
     ind_arr = np.arange(len(criterion_games))
     select_n =  3
     selected_games =  np.random.choice(ind_arr,select_n, replace = False)
-    
     selected_game_ids = [criterion_games[i]['appid'] for i in selected_games]
-    return selected_game_ids
+    alternatives = [criterion_games[i]['appid'] for i in ind_arr]
+    return selected_game_ids, alternatives
