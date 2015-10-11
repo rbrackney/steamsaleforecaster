@@ -11,6 +11,8 @@ import pymysql as mdb
 import a_Model
 import support
 import numpy as np
+import pickle
+print os.getcwd()
 
 with open('db.pw') as f: #ignored in git
     pw = f.read().strip('\n')
@@ -23,9 +25,17 @@ with db2:
     cur = db2.cursor()
     cur.execute("SELECT game_name,appid FROM website_table")
 
-OPTION_LIST = cur.fetchall()    
-#option_list = sorted([x[0] for x in option_list])
-OPTION_LIST = sorted([{'name':x[0],'appid':x[1]} for x in OPTION_LIST],key=lambda k: k['name'] )
+
+OPTION_LIST_ALL = cur.fetchall()    
+OPTION_LIST_ALL = sorted([{'name':x[0],'appid':x[1]} for x in OPTION_LIST_ALL],key=lambda k: k['name'] )
+
+OPTION_LIST =  list()
+
+USE_APPIDS = pickle.load(open( "use_appids.p", "rb" ))
+    
+for i in OPTION_LIST_ALL:
+    if i['appid'] in USE_APPIDS:
+        OPTION_LIST.append(i)
 
 @app.route('/')
 @app.route('/index')
@@ -71,6 +81,8 @@ def ss_output():
             
     
     percent = "%0.1f%%" % (sale_prob)
+    if percent == '1.0%':
+        percent = '< 1%'
     
     ## stand in for real code:
     print sale_prob
