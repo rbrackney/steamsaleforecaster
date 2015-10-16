@@ -5,8 +5,7 @@ Created on Sat Oct 10 16:00:16 2015
 @author: ryan
 
 to limit the number of games to display for MVP presentation,
- we'll limit the number in th elist to 500, selected from an excel file
- and turned into a simple list
+ we'll limit the number in the list to 500, selected from an excel file with boolean variable next to each game id
 """
 
 import pymysql as mdb
@@ -26,6 +25,7 @@ OPTION_LIST = cur.fetchall()
 OPTION_LIST = sorted([{'name':x[0],'appid':x[1]} for x in OPTION_LIST],key=lambda k: k['name'] )
 
 def make_workbook():
+    '''make the work book which can be later edited'''
     workbook = xlwt.Workbook() 
     sheet = workbook.add_sheet("games") 
     
@@ -38,6 +38,8 @@ def make_workbook():
     
 
 def make_appid_list():
+    '''make the app list from the workbook. This function should be called (for now)
+    from the console'''
     workbook = xlrd.open_workbook('use_games.xls')
     sheet_names = workbook.sheet_names()
     xl_sheet = workbook.sheet_by_name(sheet_names[0])

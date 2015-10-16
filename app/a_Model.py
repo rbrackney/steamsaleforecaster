@@ -5,6 +5,9 @@ Created on Thu Sep 17 12:29:31 2015
 @author: ryan
 """
 
+'''this isn't currently being used (as of at least 10/15/2015), 
+but may again in the future'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
@@ -29,7 +32,11 @@ def modelit(fromUser  = 'Default', population = 0):
 
 def graph_prices(x, y, gname):
     
-    
+    '''make a plot of the prices over time for a specific game'
+    x is be the dates of the bins
+    y is the prices
+    gname is the name of the game
+    '''
     x_list = list(x)
     x_dt =  [datetime.fromtimestamp(xx) for xx in x_list]
     fig=Figure(facecolor='white')

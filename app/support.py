@@ -17,15 +17,15 @@ with open('db.pw') as f:
 db2 = mdb.connect(user="root", host="localhost", passwd=pw, db="ssf_db", charset='utf8')
 
 def get_current_price(appid_in):
-    '''get most current price from a game, then output it's current value'''
+    '''get most current price from a game from a steam api call, then output it's current value'''
     site = 'http://store.steampowered.com/api/appdetails?appids=%d' % appid_in
     r = requests.get(site)
     the_json  = r.json()
     
     data = the_json[str(appid_in)]['data'][u'price_overview']
     disc = data['discount_percent']
-    ip =  "$%0.2f" % (data['initial'] * .01)
-    fp =  "$%0.2f" % (data['final'] * .01)
+    ip =  "$%0.2f" % (data['initial'] * .01) #initial price
+    fp =  "$%0.2f" % (data['final'] * .01) # final price
     discount_percent = "%d%%" % (disc)
     onsale = disc > 0
     if  onsale:
@@ -48,6 +48,8 @@ def get_rec_price(app_id, alternatives):
     return out_str,fp, disc, onsale
     
 def rec_val(disc_amount,x):
+    '''make the modification to the recommendation probability based on the 
+    shifted logistic function.'''
     loc_base =0.5 #default center
     disc_mod = 0.001 #how much to shift the discount amount by
     loc_mod = disc_amount * disc_mod 
@@ -57,7 +59,12 @@ def rec_val(disc_amount,x):
     
 def recommend_games(cur_appid, cur_price):
     '''looks in the database for games in the same cluster, but costing equal to
-    or less than the current app, and presents them on the screen'''
+    or less than the current app, and presents them on the screen.
+    As of 10/15/2015, this particularly feature was removed from the face of the
+    website.
+    It will need to be updated to include the dot-product of the tag vectors
+    to determine which within-cluster games are the best to show
+    '''
     with db2:
         cur = db2.cursor(mdb.cursors.DictCursor)
         #get_cur_game_str = 
