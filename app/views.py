@@ -64,8 +64,16 @@ def ss_output():
 
     ginfo = cur.fetchone() #there should only be one, but better safe
     gname = ginfo['game_name']
-    adiscount = "%0.1f%%" % (ginfo['avg_discount'])
-    asavings = "$%0.2f" % (ginfo['avg_savings'])
+    
+    adisc_num = ginfo['avg_discount']
+    asavings_num = ginfo['avg_savings']
+    if adisc_num == None:
+        adisc_num = 0
+    if asavings_num == None:
+        asavings_num = 0
+        
+    adiscount = "%0.1f%%" % (adisc_num)
+    asavings = "$%0.2f" % (asavings_num)
     sale_prob = ginfo['sale_prob_y']*100
     if sale_prob == 0:  
         sale_prob = 1 #correction so that a sale is never 0 percent
@@ -80,7 +88,7 @@ def ss_output():
         percent = '< 1%' #change from reporting 1% to less than 1%
     
 
-    recomendation_score = support.rec_val(ginfo['avg_savings'],sale_prob * 0.01)
+    recomendation_score = support.rec_val(asavings_num,sale_prob * 0.01)
     if recomendation_score < 0.5:
         buy_time = 'buy %s now, since it is not likely to go on sale soon.' % (gname)
     else:
@@ -93,9 +101,9 @@ def ss_output():
     center_g = bottom_games[1]
     right_g = bottom_games[2]
     
-    _cps, left_p, _dc, _osc = support.get_rec_price(left_g,alternatives)
-    _cps, center_p, _dc, _osc = support.get_rec_price(center_g,alternatives)
-    _cps, right_p, _dc, _osc = support.get_rec_price(right_g,alternatives)
+    _cps, left_p, _dc, _osc = '','','',''#support.get_rec_price(left_g,alternatives) #fix later if needed
+    _cps, center_p, _dc, _osc = '','','','' #support.get_rec_price(center_g,alternatives)
+    _cps, right_p, _dc, _osc = '','','',''#support.get_rec_price(right_g,alternatives)
     
     return render_template("ssoutput3.html", 
                            appid = appid,option_list = OPTION_LIST,

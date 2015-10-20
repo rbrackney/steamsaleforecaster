@@ -40,10 +40,12 @@ def get_rec_price(app_id, alternatives):
     doesn't solve the problem, readdress with recursion
     '''
     try:
-        out_str,fp, disc, onsale = get_current_price(app_id)
+        #out_str,fp, disc, onsale = get_current_price(app_id)
+        out_str,fp, disc, onsale = '',1,1,False #for now, simply do this
     except:
-        new_id = np.random.choice(alternatives)
-        out_str,fp, disc, onsale = get_current_price(new_id)
+        out_str,fp, disc, onsale = None,None,None,None #for now, simply do this
+        #new_id = np.random.choice(alternatives)
+        #out_str,fp, disc, onsale = get_current_price(new_id)
     
     return out_str,fp, disc, onsale
     
