@@ -53,6 +53,9 @@ def ss_input():
                            center_price = center_p,
                            option_list = OPTION_LIST) #currently the index  
 
+
+
+
 @app.route('/ssoutput')
 def ss_output():
     game_id =  int(request.args.get('option')) #get the game_id from the option selected by the user
@@ -135,3 +138,8 @@ def priceplot2(appid):
     #y = np.array([1,2,3,4,5,6,7,8,9,10])
     response = a_Model.graph_prices(x,y,appid)
     return response
+
+@app.route("/univ_map")
+def univ_map():
+    
+    return render_template("insight_universities.html") 

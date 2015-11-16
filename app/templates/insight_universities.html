@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="https://rawgit.com/andrewgiessel/leafletstuff/master/leaflet.css" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css">
+   <script src="https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js"></script>
+
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+
+   <link rel="stylesheet" href="https://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css">
+
+   
+   
+   
+   
+
+   <style>
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+      }
+
+   </style>
+</head>
+
+<body>
+<h4><center> Universities supplying Insight Fellows</h4></center>
+   <div class="folium-map" id="folium_579b227ce8c0468e8249ea07357d8dda" style="width: 100%; height: 100%"></div>
+
+   <script>
+
+      
+
+      var base_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          minZoom: 1,
+          attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+      });
+
+      var baseLayer = {
+        "Base Layer": base_tile
+      };
+
+      /*
+      addition of the wms layers
+      */
+
+      
+
+      /*
+      addition of the tile layers
+      */
+      
+
+      /*
+      list of layers to be added
+      */
+      var layer_list = {
+      
+      };
+
+      /*
+      Bounding box.
+      */
+      var southWest = L.latLng(-90, -180),
+          northEast = L.latLng(90, 180),
+          bounds = L.latLngBounds(southWest, northEast);
+
+      /*
+      Creates the map and adds the selected layers
+      */
+      var map = L.map('folium_579b227ce8c0468e8249ea07357d8dda', {
+                                       center:[0, 0],
+                                       zoom: 1,
+                                       maxBounds: bounds,
+                                       layers: [base_tile]
+                                     });
+
+      L.control.layers(baseLayer, layer_list).addTo(map);
+
+      /*
+      addition of the image layers
+      */
+      
+      
+      //cluster group
+      var clusteredmarkers = L.markerClusterGroup();
+      //section for adding clustered markers
+      
+      //add the clustered markers to the group anyway
+      map.addLayer(clusteredmarkers);
+
+      
+      var marker_1_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_1 = L.marker([41.8267718, 
+							-71.4025482],
+							{'icon':marker_1_icon}
+							);
+      marker_1.bindPopup("Brown University, # of Fellows: 2");
+      marker_1._popup.options.maxWidth = 300;
+      map.addLayer(marker_1)
+      
+      var marker_2_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_2 = L.marker([29.7173941, 
+							-95.4018312],
+							{'icon':marker_2_icon}
+							);
+      marker_2.bindPopup("Rice University, # of Fellows: 2");
+      marker_2._popup.options.maxWidth = 300;
+      map.addLayer(marker_2)
+      
+      var marker_3_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_3 = L.marker([29.6436325, 
+							-82.3549302],
+							{'icon':marker_3_icon}
+							);
+      marker_3.bindPopup("University of Florida, # of Fellows: 1");
+      marker_3._popup.options.maxWidth = 300;
+      map.addLayer(marker_3)
+      
+      var marker_4_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_4 = L.marker([35.7126775, 
+							139.761989],
+							{'icon':marker_4_icon}
+							);
+      marker_4.bindPopup("University of Tokyo, # of Fellows: 1");
+      marker_4._popup.options.maxWidth = 300;
+      map.addLayer(marker_4)
+      
+      var marker_5_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_5 = L.marker([44.6365812, 
+							-63.5916555],
+							{'icon':marker_5_icon}
+							);
+      marker_5.bindPopup("Dalhousie University, # of Fellows: 1");
+      marker_5._popup.options.maxWidth = 300;
+      map.addLayer(marker_5)
+      
+      var marker_6_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_6 = L.marker([-37.822149, 
+							145.038961],
+							{'icon':marker_6_icon}
+							);
+      marker_6.bindPopup("Swinburne University, # of Fellows: 1");
+      marker_6._popup.options.maxWidth = 300;
+      map.addLayer(marker_6)
+      
+      var marker_7_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_7 = L.marker([40.789057, 
+							-73.9530983],
+							{'icon':marker_7_icon}
+							);
+      marker_7.bindPopup("Mount Sinai School of Medicine, # of Fellows: 1");
+      marker_7._popup.options.maxWidth = 300;
+      map.addLayer(marker_7)
+      
+      var marker_8_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_8 = L.marker([-35.2776999, 
+							149.118527],
+							{'icon':marker_8_icon}
+							);
+      marker_8.bindPopup("Australian National University, # of Fellows: 1");
+      marker_8._popup.options.maxWidth = 300;
+      map.addLayer(marker_8)
+      
+      var marker_9_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_9 = L.marker([34.068921, 
+							-118.4451811],
+							{'icon':marker_9_icon}
+							);
+      marker_9.bindPopup("University of California, Los Angeles, # of Fellows: 3");
+      marker_9._popup.options.maxWidth = 300;
+      map.addLayer(marker_9)
+      
+      var marker_10_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_10 = L.marker([33.6404952, 
+							-117.8442962],
+							{'icon':marker_10_icon}
+							);
+      marker_10.bindPopup("University of California, Irvine, # of Fellows: 2");
+      marker_10._popup.options.maxWidth = 300;
+      map.addLayer(marker_10)
+      
+      var marker_11_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_11 = L.marker([48.8358925, 
+							2.3365123],
+							{'icon':marker_11_icon}
+							);
+      marker_11.bindPopup("Paris Observatory, # of Fellows: 1");
+      marker_11._popup.options.maxWidth = 300;
+      map.addLayer(marker_11)
+      
+      var marker_12_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_12 = L.marker([35.7846633, 
+							-78.6820946],
+							{'icon':marker_12_icon}
+							);
+      marker_12.bindPopup("North Carolina State University, # of Fellows: 1");
+      marker_12._popup.options.maxWidth = 300;
+      map.addLayer(marker_12)
+      
+      var marker_13_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_13 = L.marker([40.1019523, 
+							-88.2271615],
+							{'icon':marker_13_icon}
+							);
+      marker_13.bindPopup("University of Illinois at Urbana-Champaign, # of Fellows: 1");
+      marker_13._popup.options.maxWidth = 300;
+      map.addLayer(marker_13)
+      
+      var marker_14_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_14 = L.marker([40.8683786, 
+							-72.8785773],
+							{'icon':marker_14_icon}
+							);
+      marker_14.bindPopup("Brookhaven National Laboratory, # of Fellows: 1");
+      marker_14._popup.options.maxWidth = 300;
+      map.addLayer(marker_14)
+      
+      var marker_15_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_15 = L.marker([40.7392263, 
+							-73.9755502],
+							{'icon':marker_15_icon}
+							);
+      marker_15.bindPopup("NYC School of Medicine, # of Fellows: 1");
+      marker_15._popup.options.maxWidth = 300;
+      map.addLayer(marker_15)
+      
+      var marker_16_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_16 = L.marker([40.4443533, 
+							-79.960835],
+							{'icon':marker_16_icon}
+							);
+      marker_16.bindPopup("University of Pittsburgh, # of Fellows: 2");
+      marker_16._popup.options.maxWidth = 300;
+      map.addLayer(marker_16)
+      
+      var marker_17_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_17 = L.marker([42.2780436, 
+							-83.7382241],
+							{'icon':marker_17_icon}
+							);
+      marker_17.bindPopup("University of Michigan, # of Fellows: 1");
+      marker_17._popup.options.maxWidth = 300;
+      map.addLayer(marker_17)
+      
+      var marker_18_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_18 = L.marker([39.9522188, 
+							-75.1932137],
+							{'icon':marker_18_icon}
+							);
+      marker_18.bindPopup("University of Pennsylvania, # of Fellows: 3");
+      marker_18._popup.options.maxWidth = 300;
+      map.addLayer(marker_18)
+      
+      var marker_19_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_19 = L.marker([40.750606, 
+							-73.9734607],
+							{'icon':marker_19_icon}
+							);
+      marker_19.bindPopup("City University of New York, # of Fellows: 2");
+      marker_19._popup.options.maxWidth = 300;
+      map.addLayer(marker_19)
+      
+      var marker_20_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_20 = L.marker([49.2606052, 
+							-123.2459939],
+							{'icon':marker_20_icon}
+							);
+      marker_20.bindPopup("University of British Columbia, # of Fellows: 7");
+      marker_20._popup.options.maxWidth = 300;
+      map.addLayer(marker_20)
+      
+      var marker_21_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_21 = L.marker([47.3757226, 
+							8.5479407],
+							{'icon':marker_21_icon}
+							);
+      marker_21.bindPopup("Swiss Federal Institute of Technology Zurich, # of Fellows: 1");
+      marker_21._popup.options.maxWidth = 300;
+      map.addLayer(marker_21)
+      
+      var marker_22_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_22 = L.marker([41.386608, 
+							2.16402],
+							{'icon':marker_22_icon}
+							);
+      marker_22.bindPopup("Institute for Space Science, Barcelona, Spain, # of Fellows: 1");
+      marker_22._popup.options.maxWidth = 300;
+      map.addLayer(marker_22)
+      
+      var marker_23_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_23 = L.marker([42.3504997, 
+							-71.1053991],
+							{'icon':marker_23_icon}
+							);
+      marker_23.bindPopup("Boston University, # of Fellows: 3");
+      marker_23._popup.options.maxWidth = 300;
+      map.addLayer(marker_23)
+      
+      var marker_24_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_24 = L.marker([40.7982133, 
+							-77.8599084],
+							{'icon':marker_24_icon}
+							);
+      marker_24.bindPopup("The Pennsylvania State University, # of Fellows: 1");
+      marker_24._popup.options.maxWidth = 300;
+      map.addLayer(marker_24)
+      
+      var marker_25_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_25 = L.marker([38.538751, 
+							-121.733538],
+							{'icon':marker_25_icon}
+							);
+      marker_25.bindPopup("University of California,, # of Fellows: 7");
+      marker_25._popup.options.maxWidth = 300;
+      map.addLayer(marker_25)
+      
+      var marker_26_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_26 = L.marker([43.4722854, 
+							-80.5448576],
+							{'icon':marker_26_icon}
+							);
+      marker_26.bindPopup("University of Waterloo, # of Fellows: 2");
+      marker_26._popup.options.maxWidth = 300;
+      map.addLayer(marker_26)
+      
+      var marker_27_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_27 = L.marker([40.7295134, 
+							-73.9964609],
+							{'icon':marker_27_icon}
+							);
+      marker_27.bindPopup("New York University, # of Fellows: 7");
+      marker_27._popup.options.maxWidth = 300;
+      map.addLayer(marker_27)
+      
+      var marker_28_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_28 = L.marker([42.3770029, 
+							-71.1166601],
+							{'icon':marker_28_icon}
+							);
+      marker_28.bindPopup("Harvard University, # of Fellows: 13");
+      marker_28._popup.options.maxWidth = 300;
+      map.addLayer(marker_28)
+      
+      var marker_29_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_29 = L.marker([32.8800604, 
+							-117.2340135],
+							{'icon':marker_29_icon}
+							);
+      marker_29.bindPopup("University of California, San Diego, # of Fellows: 3");
+      marker_29._popup.options.maxWidth = 300;
+      map.addLayer(marker_29)
+      
+      var marker_30_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_30 = L.marker([39.9566127, 
+							-75.1899441],
+							{'icon':marker_30_icon}
+							);
+      marker_30.bindPopup("Drexel University, # of Fellows: 1");
+      marker_30._popup.options.maxWidth = 300;
+      map.addLayer(marker_30)
+      
+      var marker_31_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_31 = L.marker([42.3619403, 
+							-71.1841535],
+							{'icon':marker_31_icon}
+							);
+      marker_31.bindPopup("WiTricity Corporation, # of Fellows: 1");
+      marker_31._popup.options.maxWidth = 300;
+      map.addLayer(marker_31)
+      
+      var marker_32_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_32 = L.marker([42.3355488, 
+							-71.1684945],
+							{'icon':marker_32_icon}
+							);
+      marker_32.bindPopup("Boston College, # of Fellows: 1");
+      marker_32._popup.options.maxWidth = 300;
+      map.addLayer(marker_32)
+      
+      var marker_33_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_33 = L.marker([38.9076089, 
+							-77.0722585],
+							{'icon':marker_33_icon}
+							);
+      marker_33.bindPopup("Georgetown University, # of Fellows: 1");
+      marker_33._popup.options.maxWidth = 300;
+      map.addLayer(marker_33)
+      
+      var marker_34_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_34 = L.marker([38.9869183, 
+							-76.9425543],
+							{'icon':marker_34_icon}
+							);
+      marker_34.bindPopup("University of Maryland, # of Fellows: 1");
+      marker_34._popup.options.maxWidth = 300;
+      map.addLayer(marker_34)
+      
+      var marker_35_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_35 = L.marker([42.3663242, 
+							-71.2587503],
+							{'icon':marker_35_icon}
+							);
+      marker_35.bindPopup("Brandeis University, # of Fellows: 1");
+      marker_35._popup.options.maxWidth = 300;
+      map.addLayer(marker_35)
+      
+      var marker_36_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_36 = L.marker([50.8132068, 
+							4.3822222],
+							{'icon':marker_36_icon}
+							);
+      marker_36.bindPopup("ECARES, ULB, # of Fellows: 1");
+      marker_36._popup.options.maxWidth = 300;
+      map.addLayer(marker_36)
+      
+      var marker_37_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_37 = L.marker([40.007581, 
+							-105.2659417],
+							{'icon':marker_37_icon}
+							);
+      marker_37.bindPopup("University of Colorado, Boulder, # of Fellows: 2");
+      marker_37._popup.options.maxWidth = 300;
+      map.addLayer(marker_37)
+      
+      var marker_38_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_38 = L.marker([44.97399, 
+							-93.2277285],
+							{'icon':marker_38_icon}
+							);
+      marker_38.bindPopup("University of Minnesota, # of Fellows: 3");
+      marker_38._popup.options.maxWidth = 300;
+      map.addLayer(marker_38)
+      
+      var marker_39_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_39 = L.marker([43.138948, 
+							-70.9370252],
+							{'icon':marker_39_icon}
+							);
+      marker_39.bindPopup("University of New Hampshire, # of Fellows: 1");
+      marker_39._popup.options.maxWidth = 300;
+      map.addLayer(marker_39)
+      
+      var marker_40_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_40 = L.marker([40.789057, 
+							-73.9530983],
+							{'icon':marker_40_icon}
+							);
+      marker_40.bindPopup("Icahn School of Medicine at Mount Sinai, # of Fellows: 1");
+      marker_40._popup.options.maxWidth = 300;
+      map.addLayer(marker_40)
+      
+      var marker_41_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_41 = L.marker([32.7078079, 
+							-97.3637066],
+							{'icon':marker_41_icon}
+							);
+      marker_41.bindPopup("Texas Christian University, # of Fellows: 1");
+      marker_41._popup.options.maxWidth = 300;
+      map.addLayer(marker_41)
+      
+      var marker_42_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_42 = L.marker([39.3299013, 
+							-76.6205177],
+							{'icon':marker_42_icon}
+							);
+      marker_42.bindPopup("Johns Hopkins University, # of Fellows: 1");
+      marker_42._popup.options.maxWidth = 300;
+      map.addLayer(marker_42)
+      
+      var marker_43_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_43 = L.marker([40.5039598, 
+							-74.4484214],
+							{'icon':marker_43_icon}
+							);
+      marker_43.bindPopup("Rutgers University, # of Fellows: 2");
+      marker_43._popup.options.maxWidth = 300;
+      map.addLayer(marker_43)
+      
+      var marker_44_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_44 = L.marker([40.7982133, 
+							-77.8599084],
+							{'icon':marker_44_icon}
+							);
+      marker_44.bindPopup("Penn State, # of Fellows: 1");
+      marker_44._popup.options.maxWidth = 300;
+      map.addLayer(marker_44)
+      
+      var marker_45_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_45 = L.marker([51.7566341, 
+							-1.2547037],
+							{'icon':marker_45_icon}
+							);
+      marker_45.bindPopup("University of Oxford, # of Fellows: 3");
+      marker_45._popup.options.maxWidth = 300;
+      map.addLayer(marker_45)
+      
+      var marker_46_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_46 = L.marker([35.3050053, 
+							-120.6624942],
+							{'icon':marker_46_icon}
+							);
+      marker_46.bindPopup("California Polytechnic State University, # of Fellows: 1");
+      marker_46._popup.options.maxWidth = 300;
+      map.addLayer(marker_46)
+      
+      var marker_47_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_47 = L.marker([34.4139629, 
+							-119.848947],
+							{'icon':marker_47_icon}
+							);
+      marker_47.bindPopup("University of California, Santa Barbara, # of Fellows: 1");
+      marker_47._popup.options.maxWidth = 300;
+      map.addLayer(marker_47)
+      
+      var marker_48_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_48 = L.marker([37.2283843, 
+							-80.4234167],
+							{'icon':marker_48_icon}
+							);
+      marker_48.bindPopup("Virginia Tech, # of Fellows: 3");
+      marker_48._popup.options.maxWidth = 300;
+      map.addLayer(marker_48)
+      
+      var marker_49_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_49 = L.marker([39.0995677, 
+							-77.1938294],
+							{'icon':marker_49_icon}
+							);
+      marker_49.bindPopup("J. Craig Venter Institute, # of Fellows: 1");
+      marker_49._popup.options.maxWidth = 300;
+      map.addLayer(marker_49)
+      
+      var marker_50_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_50 = L.marker([30.2849185, 
+							-97.7340567],
+							{'icon':marker_50_icon}
+							);
+      marker_50.bindPopup("University of Texas, Austin, # of Fellows: 7");
+      marker_50._popup.options.maxWidth = 300;
+      map.addLayer(marker_50)
+      
+      var marker_51_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_51 = L.marker([37.4274745, 
+							-122.169719],
+							{'icon':marker_51_icon}
+							);
+      marker_51.bindPopup("Stanford University, # of Fellows: 46");
+      marker_51._popup.options.maxWidth = 300;
+      map.addLayer(marker_51)
+      
+      var marker_52_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_52 = L.marker([42.3354612, 
+							-71.1034568],
+							{'icon':marker_52_icon}
+							);
+      marker_52.bindPopup("Harvard Medical School, # of Fellows: 1");
+      marker_52._popup.options.maxWidth = 300;
+      map.addLayer(marker_52)
+      
+      var marker_53_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_53 = L.marker([34.4144229, 
+							-119.8405358],
+							{'icon':marker_53_icon}
+							);
+      marker_53.bindPopup("Kavli Institute for Theoretical Physics, UC Santa Barbara, # of Fellows: 1");
+      marker_53._popup.options.maxWidth = 300;
+      map.addLayer(marker_53)
+      
+      var marker_54_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_54 = L.marker([37.3629181, 
+							-120.4301435],
+							{'icon':marker_54_icon}
+							);
+      marker_54.bindPopup("University of California, Merced, # of Fellows: 1");
+      marker_54._popup.options.maxWidth = 300;
+      map.addLayer(marker_54)
+      
+      var marker_55_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_55 = L.marker([37.8718992, 
+							-122.2585399],
+							{'icon':marker_55_icon}
+							);
+      marker_55.bindPopup("University of California, Berkeley, # of Fellows: 33");
+      marker_55._popup.options.maxWidth = 300;
+      map.addLayer(marker_55)
+      
+      var marker_56_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_56 = L.marker([34.1376576, 
+							-118.125269],
+							{'icon':marker_56_icon}
+							);
+      marker_56.bindPopup("California Institute of Technology, # of Fellows: 8");
+      marker_56._popup.options.maxWidth = 300;
+      map.addLayer(marker_56)
+      
+      var marker_57_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_57 = L.marker([-33.8832376, 
+							151.2004942],
+							{'icon':marker_57_icon}
+							);
+      marker_57.bindPopup("University of Technology Sydney, Australia, # of Fellows: 1");
+      marker_57._popup.options.maxWidth = 300;
+      map.addLayer(marker_57)
+      
+      var marker_58_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_58 = L.marker([37.7629651, 
+							-122.4574487],
+							{'icon':marker_58_icon}
+							);
+      marker_58.bindPopup("University of California, San Francisco, # of Fellows: 2");
+      marker_58._popup.options.maxWidth = 300;
+      map.addLayer(marker_58)
+      
+      var marker_59_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_59 = L.marker([38.538751, 
+							-121.733538],
+							{'icon':marker_59_icon}
+							);
+      marker_59.bindPopup("Uniersity of California,, # of Fellows: 1");
+      marker_59._popup.options.maxWidth = 300;
+      map.addLayer(marker_59)
+      
+      var marker_60_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_60 = L.marker([40.0141905, 
+							-83.0309143],
+							{'icon':marker_60_icon}
+							);
+      marker_60.bindPopup("The Ohio State University, # of Fellows: 2");
+      marker_60._popup.options.maxWidth = 300;
+      map.addLayer(marker_60)
+      
+      var marker_61_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_61 = L.marker([33.7784854, 
+							-84.3968285],
+							{'icon':marker_61_icon}
+							);
+      marker_61.bindPopup("Georgia Institute of Technology/Emory University, # of Fellows: 1");
+      marker_61._popup.options.maxWidth = 300;
+      map.addLayer(marker_61)
+      
+      var marker_62_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_62 = L.marker([40.7647862, 
+							-73.9548351],
+							{'icon':marker_62_icon}
+							);
+      marker_62.bindPopup("Weill Cornell Medical College, # of Fellows: 2");
+      marker_62._popup.options.maxWidth = 300;
+      map.addLayer(marker_62)
+      
+      var marker_63_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_63 = L.marker([50.7371369, 
+							-3.5351475],
+							{'icon':marker_63_icon}
+							);
+      marker_63.bindPopup("University of Exeter, # of Fellows: 1");
+      marker_63._popup.options.maxWidth = 300;
+      map.addLayer(marker_63)
+      
+      var marker_64_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_64 = L.marker([40.8075355, 
+							-73.9625727],
+							{'icon':marker_64_icon}
+							);
+      marker_64.bindPopup("Columbia University, # of Fellows: 4");
+      marker_64._popup.options.maxWidth = 300;
+      map.addLayer(marker_64)
+      
+      var marker_65_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_65 = L.marker([40.7200972, 
+							-74.0046293],
+							{'icon':marker_65_icon}
+							);
+      marker_65.bindPopup("Lawrence Berkeley National Laboratory, # of Fellows: 6");
+      marker_65._popup.options.maxWidth = 300;
+      map.addLayer(marker_65)
+      
+      var marker_66_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_66 = L.marker([36.9913856, 
+							-122.0608718],
+							{'icon':marker_66_icon}
+							);
+      marker_66.bindPopup("University of California, Santa Cruz, # of Fellows: 3");
+      marker_66._popup.options.maxWidth = 300;
+      map.addLayer(marker_66)
+      
+      var marker_67_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_67 = L.marker([34.009616, 
+							-118.490945],
+							{'icon':marker_67_icon}
+							);
+      marker_67.bindPopup("Pardee RAND Graduate School, # of Fellows: 2");
+      marker_67._popup.options.maxWidth = 300;
+      map.addLayer(marker_67)
+      
+      var marker_68_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_68 = L.marker([38.0335529, 
+							-78.5079772],
+							{'icon':marker_68_icon}
+							);
+      marker_68.bindPopup("University of Virginia, # of Fellows: 1");
+      marker_68._popup.options.maxWidth = 300;
+      map.addLayer(marker_68)
+      
+      var marker_69_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_69 = L.marker([41.5043413, 
+							-81.6083838],
+							{'icon':marker_69_icon}
+							);
+      marker_69.bindPopup("Case Western Reserve University, # of Fellows: 1");
+      marker_69._popup.options.maxWidth = 300;
+      map.addLayer(marker_69)
+      
+      var marker_70_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_70 = L.marker([40.3439888, 
+							-74.6514481],
+							{'icon':marker_70_icon}
+							);
+      marker_70.bindPopup("Princeton University, # of Fellows: 4");
+      marker_70._popup.options.maxWidth = 300;
+      map.addLayer(marker_70)
+      
+      var marker_71_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_71 = L.marker([41.6626963, 
+							-91.5548998],
+							{'icon':marker_71_icon}
+							);
+      marker_71.bindPopup("University of Iowa, # of Fellows: 1");
+      marker_71._popup.options.maxWidth = 300;
+      map.addLayer(marker_71)
+      
+      var marker_72_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_72 = L.marker([43.076592, 
+							-89.4124875],
+							{'icon':marker_72_icon}
+							);
+      marker_72.bindPopup("University of Wisconsin - Madison, # of Fellows: 1");
+      marker_72._popup.options.maxWidth = 300;
+      map.addLayer(marker_72)
+      
+      var marker_73_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_73 = L.marker([40.3319263, 
+							-74.6667284],
+							{'icon':marker_73_icon}
+							);
+      marker_73.bindPopup("Institute for Advanced Study, Princeton, # of Fellows: 1");
+      marker_73._popup.options.maxWidth = 300;
+      map.addLayer(marker_73)
+      
+      var marker_74_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_74 = L.marker([41.3163244, 
+							-72.9223431],
+							{'icon':marker_74_icon}
+							);
+      marker_74.bindPopup("Yale University, # of Fellows: 6");
+      marker_74._popup.options.maxWidth = 300;
+      map.addLayer(marker_74)
+      
+      var marker_75_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_75 = L.marker([40.7649368, 
+							-111.8421021],
+							{'icon':marker_75_icon}
+							);
+      marker_75.bindPopup("University of Utah, # of Fellows: 1");
+      marker_75._popup.options.maxWidth = 300;
+      map.addLayer(marker_75)
+      
+      var marker_76_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_76 = L.marker([42.3398067, 
+							-71.0891717],
+							{'icon':marker_76_icon}
+							);
+      marker_76.bindPopup("Northeastern University, # of Fellows: 1");
+      marker_76._popup.options.maxWidth = 300;
+      map.addLayer(marker_76)
+      
+      var marker_77_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_77 = L.marker([50.8670895, 
+							-0.087914],
+							{'icon':marker_77_icon}
+							);
+      marker_77.bindPopup("University of Sussex, # of Fellows: 1");
+      marker_77._popup.options.maxWidth = 300;
+      map.addLayer(marker_77)
+      
+      var marker_78_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_78 = L.marker([32.2318851, 
+							-110.9501094],
+							{'icon':marker_78_icon}
+							);
+      marker_78.bindPopup("University of Arizona, # of Fellows: 1");
+      marker_78._popup.options.maxWidth = 300;
+      map.addLayer(marker_78)
+      
+      var marker_79_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_79 = L.marker([40.9123761, 
+							-73.1233889],
+							{'icon':marker_79_icon}
+							);
+      marker_79.bindPopup("Stony Brook University, # of Fellows: 1");
+      marker_79._popup.options.maxWidth = 300;
+      map.addLayer(marker_79)
+      
+      var marker_80_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_80 = L.marker([47.6553351, 
+							-122.3035199],
+							{'icon':marker_80_icon}
+							);
+      marker_80.bindPopup("University of Washington, # of Fellows: 2");
+      marker_80._popup.options.maxWidth = 300;
+      map.addLayer(marker_80)
+      
+      var marker_81_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_81 = L.marker([40.4237054, 
+							-86.9211946],
+							{'icon':marker_81_icon}
+							);
+      marker_81.bindPopup("Purdue University, # of Fellows: 1");
+      marker_81._popup.options.maxWidth = 300;
+      map.addLayer(marker_81)
+      
+      var marker_82_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_82 = L.marker([42.360091, 
+							-71.09416],
+							{'icon':marker_82_icon}
+							);
+      marker_82.bindPopup("Massachusetts Institute of Technology, # of Fellows: 10");
+      marker_82._popup.options.maxWidth = 300;
+      map.addLayer(marker_82)
+      
+      var marker_83_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_83 = L.marker([41.7055716, 
+							-86.2353388],
+							{'icon':marker_83_icon}
+							);
+      marker_83.bindPopup("University of Notre Dame, # of Fellows: 2");
+      marker_83._popup.options.maxWidth = 300;
+      map.addLayer(marker_83)
+      
+      var marker_84_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_84 = L.marker([47.3757226, 
+							8.5479407],
+							{'icon':marker_84_icon}
+							);
+      marker_84.bindPopup("ETH Zurich, # of Fellows: 1");
+      marker_84._popup.options.maxWidth = 300;
+      map.addLayer(marker_84)
+      
+      var marker_85_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_85 = L.marker([40.3323826, 
+							-3.7655529],
+							{'icon':marker_85_icon}
+							);
+      marker_85.bindPopup("University Carlos III of Madrid, # of Fellows: 1");
+      marker_85._popup.options.maxWidth = 300;
+      map.addLayer(marker_85)
+      
+      var marker_86_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_86 = L.marker([40.4424925, 
+							-79.9425528],
+							{'icon':marker_86_icon}
+							);
+      marker_86.bindPopup("Carnegie Mellon University, # of Fellows: 1");
+      marker_86._popup.options.maxWidth = 300;
+      map.addLayer(marker_86)
+      
+      var marker_87_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_87 = L.marker([42.0564594, 
+							-87.675267],
+							{'icon':marker_87_icon}
+							);
+      marker_87.bindPopup("Northwestern University, # of Fellows: 2");
+      marker_87._popup.options.maxWidth = 300;
+      map.addLayer(marker_87)
+      
+      var marker_88_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_88 = L.marker([43.0731888, 
+							-89.3871697],
+							{'icon':marker_88_icon}
+							);
+      marker_88.bindPopup("Wisconsin IceCube Particle Astrophysics Center, # of Fellows: 1");
+      marker_88._popup.options.maxWidth = 300;
+      map.addLayer(marker_88)
+      
+      var marker_89_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_89 = L.marker([55.6969496, 
+							12.5715788],
+							{'icon':marker_89_icon}
+							);
+      marker_89.bindPopup("Niels Bohr Institute, Copenhagen University, # of Fellows: 1");
+      marker_89._popup.options.maxWidth = 300;
+      map.addLayer(marker_89)
+      
+      var marker_90_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_90 = L.marker([38.5382322, 
+							-121.7617125],
+							{'icon':marker_90_icon}
+							);
+      marker_90.bindPopup("University of California, Davis, # of Fellows: 3");
+      marker_90._popup.options.maxWidth = 300;
+      map.addLayer(marker_90)
+      
+      var marker_91_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_91 = L.marker([33.9737055, 
+							-117.3280644],
+							{'icon':marker_91_icon}
+							);
+      marker_91.bindPopup("University of California, Riverside, # of Fellows: 2");
+      marker_91._popup.options.maxWidth = 300;
+      map.addLayer(marker_91)
+      
+      var marker_92_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_92 = L.marker([41.7886079, 
+							-87.5987133],
+							{'icon':marker_92_icon}
+							);
+      marker_92.bindPopup("University of Chicago, # of Fellows: 1");
+      marker_92._popup.options.maxWidth = 300;
+      map.addLayer(marker_92)
+      
+      var marker_93_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_93 = L.marker([42.4534492, 
+							-76.4735027],
+							{'icon':marker_93_icon}
+							);
+      marker_93.bindPopup("Cornell University, # of Fellows: 2");
+      marker_93._popup.options.maxWidth = 300;
+      map.addLayer(marker_93)
+      
+      var marker_94_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_94 = L.marker([40.007581, 
+							-105.2659417],
+							{'icon':marker_94_icon}
+							);
+      marker_94.bindPopup("University of Colorado Boulder, # of Fellows: 1");
+      marker_94._popup.options.maxWidth = 300;
+      map.addLayer(marker_94)
+      
+      var marker_95_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_95 = L.marker([19.73839, 
+							-156.0127687],
+							{'icon':marker_95_icon}
+							);
+      marker_95.bindPopup("University of Hawaii, # of Fellows: 1");
+      marker_95._popup.options.maxWidth = 300;
+      map.addLayer(marker_95)
+      
+      var marker_96_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_96 = L.marker([36.0014258, 
+							-78.9382286],
+							{'icon':marker_96_icon}
+							);
+      marker_96.bindPopup("Duke University, # of Fellows: 1");
+      marker_96._popup.options.maxWidth = 300;
+      map.addLayer(marker_96)
+      
+      var marker_97_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_97 = L.marker([42.4074843, 
+							-71.1190232],
+							{'icon':marker_97_icon}
+							);
+      marker_97.bindPopup("Tufts University, # of Fellows: 1");
+      marker_97._popup.options.maxWidth = 300;
+      map.addLayer(marker_97)
+      
+      var marker_98_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_98 = L.marker([48.4634067, 
+							-123.3116935],
+							{'icon':marker_98_icon}
+							);
+      marker_98.bindPopup("University of Victoria, # of Fellows: 1");
+      marker_98._popup.options.maxWidth = 300;
+      map.addLayer(marker_98)
+      
+      var marker_99_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_99 = L.marker([43.6628917, 
+							-79.3956564],
+							{'icon':marker_99_icon}
+							);
+      marker_99.bindPopup("University of Toronto, # of Fellows: 4");
+      marker_99._popup.options.maxWidth = 300;
+      map.addLayer(marker_99)
+      
+      var marker_100_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_100 = L.marker([48.2609911, 
+							11.6714619],
+							{'icon':marker_100_icon}
+							);
+      marker_100.bindPopup("Max Planck Institute for Astrophysics, # of Fellows: 1");
+      marker_100._popup.options.maxWidth = 300;
+      map.addLayer(marker_100)
+      
+      var marker_101_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_101 = L.marker([52.2042666, 
+							0.1149085],
+							{'icon':marker_101_icon}
+							);
+      marker_101.bindPopup("University of Cambridge, # of Fellows: 1");
+      marker_101._popup.options.maxWidth = 300;
+      map.addLayer(marker_101)
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+var autobounds = L.featureGroup([]).getBounds()
+
+
+
+
+
+map.fitBounds(autobounds,
+    {"padding": [30, 30]}
+);
+
+   </script>
+
+</body>
